@@ -1,8 +1,13 @@
 package com.dannykudinov.spring;
 
+import org.springframework.stereotype.Component;
+
 public class Cat implements Pet{
+    public Cat(){
+        System.out.println("Cat bean is created");
+    }
     @Override
     public void say() {
-        System.out.printf("Meow-Meow");
+        System.out.println("Meow-Meow");
     }
 }

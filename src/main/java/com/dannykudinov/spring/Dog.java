@@ -1,8 +1,15 @@
 package com.dannykudinov.spring;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
 public class Dog implements Pet {
 
-    public Dog(){
+    public Dog() {
         System.out.println("Dog bean is created!");
     }
 
@@ -12,17 +19,18 @@ public class Dog implements Pet {
 //        return name;
 //    }
 
-//    public void setName(String name) {
+    //    public void setName(String name) {
 //        this.name = name;
 //    }
-
-    public void init(){
+    @PostConstruct
+    public void init() {
         System.out.println("Class Dog: init method");
     }
-
-    public void destroy(){
+    @PreDestroy
+    public void destroy() {
         System.out.println("Class Dog: destroy method");
     }
+
     @Override
     public void say() {
         System.out.println("Bow-Wow");
