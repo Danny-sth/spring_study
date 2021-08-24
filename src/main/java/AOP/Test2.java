@@ -14,8 +14,12 @@ public class Test2 {
         // получаем бин  university c типом University
 
         university.addStudents();
-        List<Student> studentList = university.getStudents();
-        System.out.println(studentList.toString());
+        try {
+            List<Student> studentList = university.getStudents();
+            System.out.println(studentList.toString());
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Было поймано исключение " + e);
+        }
 
         context.close();
     }
