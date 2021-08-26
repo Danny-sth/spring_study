@@ -1,9 +1,12 @@
 package hibernate_test.Entity;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class Test1 {
+import java.util.List;
+
+public class Test3 {
     public static void main(String[] args) {
         SessionFactory factory =
                 new Configuration().configure("hibernate.cfg.xml")
@@ -12,14 +15,15 @@ public class Test1 {
 
         try {
             Session session = factory.getCurrentSession();
-            Employee employee =
-                    new Employee("Alexandr", "Ivanov", "IT", 600);
-
             session.beginTransaction();
-            session.save(employee);
+            List<Employee> emps = session.createQuery("from Employee " +
+                            "where name = 'Alexandr' and salary > 550")
+                    .getResultList();
+            for (Employee e : emps) {
+                System.out.println(e);
+            }
             session.getTransaction().commit();
             System.out.println("Done!");
-            System.out.println(employee);
         } finally {
             factory.close();
         }
