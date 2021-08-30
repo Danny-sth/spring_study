@@ -20,8 +20,8 @@ public class Employee {
     @Column(name = "salary")
     private int salary;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "department_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id") // Foreign Key
     private Department department;
 
     public Employee() {
